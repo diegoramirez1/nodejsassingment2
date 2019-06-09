@@ -1,0 +1,19 @@
+{
+  "name": "nodejsassingment2",
+  "version": "1.0.0",
+  "description": "Segunda entrega para curso de nodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegoramirez1/nodejsassingment2.git"
+  },
+  "author": "Diego Ramirez diegoramirez1@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegoramirez1/nodejsassingment2/issues"
+  },
+  "homepage": "https://github.com/diegoramirez1/nodejsassingment2#readme"
+}
