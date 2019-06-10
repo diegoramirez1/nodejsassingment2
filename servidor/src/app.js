@@ -8,7 +8,8 @@ const directoriopublico = path.join(__dirname,'../public');
 const directoriopartials = path.join(__dirname,'../partials');
 const directoriohelpers = path.join(__dirname,'../helpers');
 
-require(directoriohelpers+'/helperCursos')
+require(directoriohelpers+'/helperCursos');
+require(directoriohelpers+'/helperAlumnos');
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(directoriopublico));
@@ -19,7 +20,7 @@ app.set('view engine', 'hbs');
 
 //pagina de inicio sin colocar index en la url
 app.get('/',(req,res) => {
-    res.render('index')
+    res.redirect('index');
 });
 
 //pagina de inicio url index
@@ -63,8 +64,6 @@ app.post('/creandoCurso',(req,res) => {
 //pagina para eliminar un curso
 app.get('/eliminandoCurso',(req,res) => {
 
-    console.log(req.query);
-
     res.render('eliminandoCurso', {
         id: req.query.id
     })
@@ -74,7 +73,7 @@ app.get('/eliminandoCurso',(req,res) => {
 
 //pagina para cerrar un curso
 app.post('/cerrandoCurso',(req,res) => {
-    
+
     res.render('cerrandoCurso', {
         id: req.body.id,
         estado: req.body.estado
@@ -82,6 +81,27 @@ app.post('/cerrandoCurso',(req,res) => {
 
     res.redirect('crearcurso');
 });
+
+
+
+//estudiantes
+app.get('/inscribir',(req,res) => {
+    res.render('inscribir')
+});
+
+app.post('/inscribiendoCurso',(req,res) => {
+
+    res.render('inscribiendoCurso',{
+        cursoid: req.body.cursoid,
+        identidad: req.body.identidad,
+        nombreIns: req.body.nombreIns,
+        correo: req.body.correo,
+        celular: req.body.celular
+    })
+
+    res.redirect('inscribir');
+});
+
 
 
 

@@ -1,0 +1,36 @@
+{{>header}}
+    <p>
+        Pagina principal de aspirante
+    </p>
+    <p>
+        Como aspirante debe seleccionar un curso de la lista, ingresar sus datos y presionar el boton inscribir
+    </p>
+    
+    <form action="/inscribiendoCurso" method="POST">
+    {{{listarCursosInscribir}}}
+    <p>
+        Por favor iongrese sus datos
+    </p>
+    
+            <table>
+                <tr>
+                    <td><label for="diText">Documento identidad </label></td>
+                    <td><input type="number" id="diText" name="identidad" required></td>
+                </tr>
+                <tr>
+                    <td><label for="nombreInsText">Nombre</label></td>
+                    <td><input type="text" id="nombreInsText" name="nombreIns" required></td>
+                </tr>
+                <tr>
+                    <td><label for="correoText">Correo Electronico</label></td>
+                    <td><input type="text" id="correoText" name="correo" required></td>
+                </tr>
+                <tr>
+                    <td><label for="celularText">Numero celular</label></td>
+                    <td><input type="number" id="celularText" name="celular" required></td>
+                </tr>
+            </table>
+        <button>Inscribir</button>
+    </form>
+
+{{>footer}}

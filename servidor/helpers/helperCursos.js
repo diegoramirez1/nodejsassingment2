@@ -13,7 +13,6 @@ hbs.registerHelper('listarCursos',() => {
                   <th> Nombre </th> \
                   <th> Descripción </th> \
                   <th> Valor </th> \
-                  <th> Accion </th> \
                   </thead> \
                   <tbody> ';
     
@@ -23,8 +22,34 @@ hbs.registerHelper('listarCursos',() => {
         texto =  texto + '<tr><td><a href="detallecurso?id='+curso.id+'">' + curso.id + '</a></td>' +
                          '<td>' + curso.nombre + '</td>' +
                          '<td>'  + curso.descripcion + '</td>' +
-                         '<td>' + curso.inversion + '</td>' +
-                         '<td> <button> Inscribir </button> </td></tr>'
+                         '<td>' + curso.inversion + '</td></tr>'
+    });
+
+    texto = texto +' </tbody> </table> ';
+
+    return texto;
+})
+
+hbs.registerHelper('listarCursosInscribir',() => {
+    
+    iniciarFile();
+
+    let texto = ' <table border="1"> \
+                  <thead> \
+                  <th> ID </th> \
+                  <th> Nombre </th> \
+                  <th> Descripción </th> \
+                  <th> Valor </th> \
+                  </thead> \
+                  <tbody> ';
+    
+        listaCursos
+        .filter(curso => curso.estado === 'Disponible')
+        .forEach(curso => {
+        texto =  texto + '<tr><td> <input type="radio" name="cursoid" value="'+curso.id+'" required></td>' +
+                         '<td>' + curso.nombre + '</td>' +
+                         '<td>'  + curso.descripcion + '</td>' +
+                         '<td>' + curso.inversion + '</td></tr>'
     });
 
     texto = texto +' </tbody> </table> ';
