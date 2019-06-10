@@ -1,0 +1,57 @@
+{{>header}}
+    <p>
+        Pagina principal de coordinador
+    </p>
+    <p>
+        Como coordinador aqui puede gestionar los cursos (consultar, crear, cerrar, abrir, eliminarcurso , eliminar personas)
+    </p>
+    {{{gestionarCursos}}}
+    <p>
+        Crear nuevo curso
+    </p>
+    <form action="/creandoCurso" method="POST">
+        <table>
+            <tr>
+                <td><label for="idText">Identificador(numerico)</label></td>
+                <td><input type="number" id="idText" name="id" required></td>
+            </tr>
+            <tr>
+                <td><label for="nombreText">Nombre</label></td>
+                <td><input type="text" id="nombreText" name="nombre" required></td>
+            </tr>
+            <tr>
+                <td><label for="descripcionText">Descripcion</label></td>
+                <td><input type="text" id="descripcionText" name="descripcion" required></td>
+            </tr>
+            <tr>
+                <td><label for="valorText">Valor</label></td>
+                <td><input type="number" id="valorText" name="valor" required></td>
+            </tr>
+            <tr>
+                <td><label for="modalidadText">Modalidad</label></td>
+                <td>
+                    <select id="modalidadText" name="modalidad">
+                        <option value="Presencial">Presencial</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="horasText">Intensidad horaria</label></td>
+                <td><input type="number" id="horasText" name="intensidad" value="0"></td>
+            </tr>
+            <tr>
+                <td><label for="estadoText">Estado</label></td>
+                <td>
+                    <select id="estadoText" name="estado">
+                        <option value="Disponible" selected="selected">Disponible</option>
+                        <option value="Cerrado">Cerrado</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        
+        
+        <button>Guardar</button>
+    </form>
+{{>footer}}
