@@ -82,6 +82,10 @@ app.post('/cerrandoCurso',(req,res) => {
     res.redirect('crearcurso');
 });
 
+//pagina para visualizar las inscripciones
+app.get('/inscritos',(req,res) => {
+    res.render('inscritos')
+});
 
 
 //estudiantes
@@ -101,10 +105,6 @@ app.post('/inscribiendoCurso',(req,res) => {
 
     res.redirect('inscribir');
 });
-
-
-
-
 
 //para manejar error en cualquier pagina no especificada
 app.get('*',(req,res) => {

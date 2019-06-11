@@ -88,7 +88,7 @@ const guardarInscripcionCurso = (estudiante,curso) => {
         salon = ins[0].estudiantes;
     }
 
-    //validar que no hay una cedula repetida en el curso seleccionado
+    //validar que no hay una cedula ingresada no esta vinculada a el curso seleccionado
     let arrSalon = [salon];
     let incDuplicada =   arrSalon.find(ced => estudiante.identidad === ced)   
 
@@ -126,3 +126,30 @@ const crearObjetoInscripcion = (estudiante,curso)  => {
     }
     return inscripcion;
 }
+
+hbs.registerHelper('listarInscripciones',() => {
+    
+    iniciarFileinscripciones();
+    iniciarFileCursos();
+    iniciarFileEstudiantes();
+
+    console.log(listaInscripciones);
+
+    let texto = ' <table border="1"> \
+        <thead> \
+        <th> Curso </th> \
+        <th> Estudiantes </th> \
+        </thead> \
+        <tbody>';
+
+    listaInscripciones
+        .forEach(inscripcion => {
+
+            texto =  texto +'<tr><td>' + inscripcion.curso + '</td>' +
+                            '<td>' + inscripcion.estudiantes + '</td>'+'</td></tr>';
+        });
+
+        texto = texto +' </tbody> </table> ';
+     
+    return texto;    
+})
