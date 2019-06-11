@@ -33,11 +33,10 @@ hbs.registerHelper('inscribirCurso',(identidad,nombreIns,correo,celular,cursoid)
     let estudiante = crearObjetoEstudiante(identidad,nombreIns,correo,celular);
     let curso = crearObjetoCurso(cursoid);
     
+    //guardando estudiante
     guardarEstudiante(estudiante);
-
-    guardarInscripcionCurso(estudiante,curso);
-
- 
+    //guardando inscripcion
+    guardarInscripcionCurso(estudiante,curso); 
 })
 
 const crearObjetoEstudiante = (identidad,nombreIns,correo,celular)  => {
@@ -84,12 +83,26 @@ const guardarInscripcionCurso = (estudiante,curso) => {
 
     let ins =  listaInscripciones
                 .filter(ins => ins.curso === curso.id);
-    let salon = ins[0].estudiantes;
+    let salon;         
+    if (ins.length > 0) {
+        salon = ins[0].estudiantes;
+    }
 
-    let incDuplicada = salon.find(estudiante.identidad)
+    //validar que no hay una cedula repetida en el curso seleccionado
+    let arrSalon = [salon];
+    let incDuplicada =   arrSalon.find(ced => estudiante.identidad === ced)   
+
     if (!incDuplicada) {
+        
+        if (ins.length > 0) {
+            //agregando cedula nueva a la lista de estudiantes
+            salon.push(estudiante.identidad);
+        } else {
+            //formo el objeto de inscripcion
+            let newIns = crearObjetoInscripcion(estudiante,curso);
+            listaInscripciones.push(newIns);
+        }
 
-        listaInscripciones.push( crearObjetoInscripcion(estudiante,curso) );
         guardarArchivoInscripciones();
         
     }else{
