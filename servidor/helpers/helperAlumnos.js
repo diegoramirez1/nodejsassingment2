@@ -133,8 +133,6 @@ hbs.registerHelper('listarInscripciones',() => {
     iniciarFileCursos();
     iniciarFileEstudiantes();
 
-    console.log(listaInscripciones);
-
     let texto = ' <table border="1"> \
         <thead> \
         <th> Curso </th> \
@@ -152,4 +150,27 @@ hbs.registerHelper('listarInscripciones',() => {
         texto = texto +' </tbody> </table> ';
      
     return texto;    
+})
+
+hbs.registerHelper('eliminarInscripcion',(id,curso) => {
+    
+    iniciarFileinscripciones();
+
+    console.log(listaInscripciones);
+
+    let ins =  listaInscripciones
+        .filter(ins => ins.curso === curso);
+    let salon;
+    salon = ins[0].estudiantes;
+
+    console.log(salon);
+
+    //eliminando la cedula del archivo de inscripciones
+    salon.filter(ced => ced !== id)
+
+    console.log(salon);
+
+    console.log(listaInscripciones);
+    //guardarArchivoInscripciones();
+
 })

@@ -87,6 +87,17 @@ app.get('/inscritos',(req,res) => {
     res.render('inscritos')
 });
 
+//pagina para eliminar una inscripcion
+app.post('/eliminandoInscripcion',(req,res) => {
+
+    res.render('eliminandoInscripcion', {
+        id: req.body.id,
+        curso: req.body.curso
+    })
+
+    res.redirect('inscritos');
+});
+
 
 //estudiantes
 app.get('/inscribir',(req,res) => {

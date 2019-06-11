@@ -6,4 +6,21 @@
         En esta seccion el coordinador podra ver alumnos inscritos en un curso y eliminar esa inscripcion
     </p>
     {{{listarInscripciones}}}
+    <p>
+        Eliminar inscripcion, por favor ingrese el numero de cedula y el id del curso y luego presione el boton
+    </p>
+    <form action="/eliminandoInscripcion" method="POST">
+        <table>
+            <tr>
+                <td><label for="idText">Identificacion</label></td>
+                <td><input type="text" id="idText" name="id" required></td>
+            </tr>
+            <tr>
+                <td><label for="cursoText">Curso</label></td>
+                <td><input type="text" id="cursoText" name="curso" required></td>
+            </tr>
+        </table>
+        
+        <button>Eliminar</button>
+    </form>
 {{>footer}}    
