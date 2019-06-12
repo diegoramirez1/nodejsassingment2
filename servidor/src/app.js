@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
+const funciones = require('./funciones');
 
 const directoriopublico = path.join(__dirname,'../public');
 const directoriopartials = path.join(__dirname,'../partials');
@@ -117,12 +118,38 @@ app.post('/inscribiendoCurso',(req,res) => {
     res.redirect('inscribir');
 });
 
+
+//pagina para logearse
+app.get('/login',(req,res) => {
+    res.render('login',{
+            user: req.body.user,
+            pass: req.body.pass
+        })
+    let auxUser = funciones.getUser();
+    let auxPass = funciones.getPass();
+    let auxRol = funciones.getRol();
+    if(req.query.user === auxUser && req.query.pass === auxPass && auxRol === "Aspirante"){
+        res.redirect('inscribir');
+    }
+});
+
+//pagina para realizar un registro
+app.get('/register',(req,res) =>{
+    funciones.crear(req.query.user, req.query.pass, req.query.rol);
+    res.render('register',{
+        user: req.body.user,
+        pass: req.body.pass
+    })
+});
+
 //para manejar error en cualquier pagina no especificada
 app.get('*',(req,res) => {
     res.render('error', {
         estudiante: 'Error'
     })
 });
+
+
 
 //inciar la aplicacion
 app.listen(3000, () => {

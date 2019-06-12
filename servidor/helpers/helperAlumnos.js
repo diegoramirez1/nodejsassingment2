@@ -28,6 +28,14 @@ const iniciarFileinscripciones = () => {
     }
 }
 
+const iniciarFileRegistrados = () => {
+    try {
+        listaRegistrados = JSON.parse(fs.readFileSync(directorioData+'/registro.json'));
+    }catch (error) {
+        listaRegistrados = [];
+    }
+}
+
 hbs.registerHelper('inscribirCurso',(identidad,nombreIns,correo,celular,cursoid) => {
     
     let estudiante = crearObjetoEstudiante(identidad,nombreIns,correo,celular);
@@ -184,3 +192,27 @@ const crearObjetoCursoInscripcion = (curso,salon)  => {
     }
     return nuevoCursoConEstudiantes;
 }
+
+hbs.registerHelper('listarRolEstudiante',() => {
+    
+    iniciarFileRegistrados();
+
+    let texto = ' <table border="1"> \
+        <thead> \
+        <th> Cedula: </th> \
+        <th> Nombre: </th> \
+        <th> Rol: </th> \
+        </thead> \
+        <tbody>';
+
+    listaRegistrados.forEach(aux => {
+
+            texto =  texto +'<tr><td>' + aux.id + '</td>' +
+                           '<td>' + aux.name + '</td>' +
+                            '<td>' + aux.rol + '</td>'+'</td></tr>';
+        });
+
+        texto = texto +' </tbody> </table> ';
+     
+    return texto;    
+})
