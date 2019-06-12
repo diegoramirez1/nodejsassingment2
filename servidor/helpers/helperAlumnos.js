@@ -156,21 +156,31 @@ hbs.registerHelper('eliminarInscripcion',(id,curso) => {
     
     iniciarFileinscripciones();
 
-    console.log(listaInscripciones);
+    //guardar los otros curson que no van a ser afectados
+    let listIns = listaInscripciones
+                    .filter(ins => ins.curso !== curso);
 
+    //tomar el curso al que se le va a quitar el estudiante
     let ins =  listaInscripciones
         .filter(ins => ins.curso === curso);
-    let salon;
-    salon = ins[0].estudiantes;
 
-    console.log(salon);
+    //eliminar el estudiante de la lista de inscritos    
+    let salon = ins[0].estudiantes.filter(identificacion => identificacion !== id);    
+    
+    nuevoCurso = crearObjetoCursoInscripcion(curso,salon);
 
-    //eliminando la cedula del archivo de inscripciones
-    salon.filter(ced => ced !== id)
+    listaInscripciones = listIns;
+    listaInscripciones.push(nuevoCurso);    
 
-    console.log(salon);
-
-    console.log(listaInscripciones);
-    //guardarArchivoInscripciones();
+    guardarArchivoInscripciones();
 
 })
+
+const crearObjetoCursoInscripcion = (curso,salon)  => {
+
+    let nuevoCursoConEstudiantes ={
+        curso: curso,
+        estudiantes: salon
+    }
+    return nuevoCursoConEstudiantes;
+}
