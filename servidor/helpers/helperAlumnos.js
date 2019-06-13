@@ -216,3 +216,50 @@ hbs.registerHelper('listarRolEstudiante',() => {
      
     return texto;    
 })
+
+hbs.registerHelper('misCursos',() => {
+    
+    iniciarFileinscripciones();
+    iniciarFileCursos();
+
+    let id='555385';
+
+    let i;
+    let ins;
+    let salon;
+    let inscripcionesActivas = [];
+
+    for (i = 0; i < listaInscripciones.length; i++) { 
+        ins = listaInscripciones[i];
+        salon = ins.estudiantes;
+        
+        console.log(salon);
+
+        if (salon.includes(id)){
+            inscripcionesActivas.push(ins.curso);
+        }
+    }
+
+    console.log(inscripcionesActivas);
+
+    let texto = '<form id="darDeBaja" action="/darDeBajaCurso" method="POST">';
+    texto = texto = ' <table border="1"> \
+    <thead> \
+    <th> Curso </th> \
+    <th> Opcion </th> \
+    </thead> \
+    <tbody>';
+
+    inscripcionesActivas
+            .forEach(idCurso => {
+                texto =  texto +'<tr><td>' + idCurso + '</td>';
+                texto =  texto +'<td><input type="radio" name="cursoid" value="'+idCurso+'" required></tr>';
+            });
+    
+    texto = texto +' </tbody> </table> ';
+    texto = texto + '<form />';
+    texto = texto + '<button>Dar de baja</button>';
+
+    return texto;
+    
+})
