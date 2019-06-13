@@ -192,7 +192,6 @@ const crearObjetoCursoInscripcion = (curso,salon)  => {
     }
     return nuevoCursoConEstudiantes;
 }
-<<<<<<< HEAD
 
 hbs.registerHelper('listarRolEstudiante',() => {
     
@@ -264,5 +263,3 @@ hbs.registerHelper('misCursos',() => {
     return texto;
     
 })
-=======
->>>>>>> master
