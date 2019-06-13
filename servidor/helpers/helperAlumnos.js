@@ -2,6 +2,7 @@ const hbs = require('hbs');
 const path = require('path');
 const directorioData = path.join(__dirname,'../data');
 const fs = require('fs');
+listaRegistrados = []
 
 
 const iniciarFileCursos = () => {
@@ -81,6 +82,14 @@ const guardarArchivoEstudiantes = () => {
     fs.writeFile(directorioData+'/estudiantes.json', datos, (err) => {
         if (err) throw (err);
         console.log('Archivo de estudiantes credo exitosamente');
+    })
+}
+
+const guardarRegistro=()=>{
+    let datos = JSON.stringify(listaRegistrados);
+    fs.writeFile(directorioData+'/registro.json', datos, (err) => {
+        if (err) throw (err);
+        console.log('Archivo de registros credo exitosamente');
     })
 }
 
@@ -262,4 +271,47 @@ hbs.registerHelper('misCursos',() => {
 
     return texto;
     
+})
+
+hbs.registerHelper('modificar',()=>{
+    iniciarFileRegistrados()
+    let texto = ' <table class="table table-striped table-hover"> \
+        <thead class="thead-dark"> \
+        <th> Id </th> \
+        <th> User </th> \
+        <th> Nombre </th> \
+        <th> Mail </th> \
+        <th> Numero </th> \
+        <th> Rol </th> \
+        </thead> \
+        <tbody>';
+
+    listaRegistrados.forEach(aux => {
+            texto =  texto +'<tr><td> '+aux.id+'</td>' +
+                           '<td>' + aux.user + '</td>' +
+                           '<td>' + aux.name + '</td>' +
+                           '<td>' + aux.mail + '</td>' +
+                           '<td>' + aux.numero + '</td>' +
+                            '<td>' + aux.rol + '</td>'+'</td></tr>';
+        });
+
+        texto = texto +' </tbody> </table> ';
+     
+    return texto; 
+})
+
+hbs.registerHelper('cambiarParams',(id,user, nombre, mail,numero,rol)=>{
+    iniciarFileRegistrados()
+    let usuario = listaRegistrados.find(registrado=> registrado.id == id);
+    if(!usuario){
+        console.log('El usuario no existe')
+    }else{
+            usuario['user']=user
+            usuario['name']= nombre
+            usuario['mail']= mail
+            usuario['numero']= numero
+            usuario['rol']= rol
+        guardarRegistro()
+    }
+   
 })
