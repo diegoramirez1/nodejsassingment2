@@ -3,16 +3,26 @@ var listaEstudiantes = [];
 const path = require('path');
 const directorioData = path.join(__dirname,'../data');
 
-let crear = (u,p,r) => {
+let crear = (i,n,e,t,u,p,r) => {
 	listar();
 	let est = {
+		id: i,
+		name: n,
+		email: e,
+		tel: t,
 		user: u,
 		pass: p,
 		rol: r
 	};
-	listaEstudiantes.push(est)
-	console.log(listaEstudiantes);
-	guardar();	
+	let duplicado = listaEstudiantes.find(cedula => cedula.id === i);
+	if (!duplicado){
+		listaEstudiantes.push(est)
+		console.log(listaEstudiantes);
+		guardar();
+	}
+	else{
+        console.log('Ya existe un aspirante con ese id');
+    }
 }
 
 const listar = () => {
@@ -47,7 +57,7 @@ const getUser = () => {
 
     listaRegistrados.forEach(aux => {
 
-            texto =  aux.user ;
+            texto =  aux.user + '';
         });
 
         texto = texto+'';
@@ -88,10 +98,39 @@ const getRol = () => {
     return texto;    
 }
 
+const getUserr = (user) => {
+   iniciarFileRegistrados();
+   let texto = '' ;
+        listaRegistrados.filter(aux_user => aux_user.user === user).forEach(aux => {
+        texto =  texto + aux.user
+    });
+
+    texto = texto +' </tbody> </table> ';
+
+    return texto;
+};
+
+/*
+const getUserr = () => {
+   iniciarFileRegistrados();
+   let texto;
+        listaRegistrados
+        .forEach(aux => {
+        texto =  texto + 
+        "user:" + aux.user +
+        "pass:" +aux.pass });
+
+    texto = texto +' </tbody> </table> ';
+
+    return texto;
+};
+*/
+
 
 module.exports = {
 	crear,
 	getUser,
 	getPass,
-	getRol
+	getRol,
+	getUserr
 }

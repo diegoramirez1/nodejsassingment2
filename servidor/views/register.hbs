@@ -4,10 +4,14 @@
 	Pagina de registro
 </p>
 
-<form action = "/register" method="get">
-	Usuario:<input type="text" name="user">
-	Contraseña:<input type="password" name="pass">
-	<select id="rolTxt" name="rol">
+<form action = "/register" method="get" required>
+	Doc identidad:<input type="number" name="id" required>
+	Nombre:<input type="text" name="name" required>
+	Correo:<input type="text" name="email" required>
+	Telefono:<input type="number" name="tel" required>
+	Usuario:<input type="text" name="user" required>
+	Contraseña:<input type="password" name="pass" required>
+	Rol:<select id="rolTxt" name="rol">
 		<option value="Aspirante">Aspirante</option>
 	</select>
 	<button>Registrar</button>
