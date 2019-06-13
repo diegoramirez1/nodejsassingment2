@@ -124,6 +124,17 @@ app.post('/inscribiendoCurso',(req,res) => {
 });
 
 
+app.get('/modificarUser',(req,res)=>{
+    res.render('modificarUser',{
+        id: req.query.id,
+        user: req.query.user,
+        nombre: req.query.nombre,
+        mail: req.query.mail,
+        numero: req.query.numero,
+        rol: req.query.rol
+    })
+})
+
 //pagina para logearse
 app.get('/login',(req,res) => {
     res.render('login',{

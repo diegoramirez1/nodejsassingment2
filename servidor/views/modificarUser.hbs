@@ -1,0 +1,29 @@
+{{>header}}
+<br>
+{{{modificar}}}
+<div>
+    <form action="/modificarUser" method="GET">
+        <div class="col">
+            <label for="idu">Id del usuario</label>
+            <input class="form-control" type="number" name="id" id="idc" placeholder="Id del usuario">
+            <label for="useru">Nuevo nombre de usuario</label>
+            <input class="form-control" type="text" name="user" id="useru" placeholder="Nuevo nombre de usuario(para iniciar sesion)">
+            <label for="nombreu">Nuevo nombre</label>
+            <input class="form-control" type="text" name="nombre" id="nombreu" placeholder="Nuevo nombre ">
+            <label for="mailu">Nuevo mail</label>
+            <input class="form-control" type="email" name="mail" id="mailu" placeholder="Nuevo mail(para iniciar sesion)">
+            <label for="numerou">Nuevo numero</label>
+            <input class="form-control" type="number" name="numero" id="numerou" placeholder="Nuevo numero de telefono">
+            <label for="rolu">Nuevo Rol</label>
+            <select class="form-control" type="text" name="rol" id="rolu">
+                <option value="Aspirante">Aspirante</option>
+                <option value="Maestro">Maestro</option>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-primary">Modificar</button>
+        </div> }
+        {{cambiarParams id user  nombre  mail numero rol}}
+    </form>
+</div>
+
+{{>footer}}
