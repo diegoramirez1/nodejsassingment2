@@ -4,16 +4,41 @@
 	Pagina de registro
 </p>
 
-<form action = "/register" method="get" required>
-	Doc identidad:<input type="number" name="id" required>
-	Nombre:<input type="text" name="name" required>
-	Correo:<input type="text" name="email" required>
-	Telefono:<input type="number" name="tel" required>
-	Usuario:<input type="text" name="user" required>
-	Contraseña:<input type="password" name="pass" required>
-	Rol:<select id="rolTxt" name="rol">
-		<option value="Aspirante">Aspirante</option>
-	</select>
-	<button>Registrar</button>
+<form action = "/register" method="get">
+<table>
+	<tr>
+		<td><label for="idTxt">Doc identidad:</label></td>
+		<td><input type="number" name="id" required></td>
+	</tr>
+	<tr>
+		<td><label for="nameTxt">Nombre:</label></td>
+		<td><input type="text" name="name" required></td>
+	</tr>
+	<tr>
+		<td><label for="emailTxt">Email:</label></td>
+		<td><input type="text" name="email" required></td>
+	</tr>
+	<tr>
+		<td><label for="telTxt">Telefono:</label></td>
+		<td><input type="number" name="tel" required></td>
+	</tr>
+	<tr>
+		<td><label for="userTxt">Usuario</label></td>
+		<td><input type="text" name="user" required></td>
+	</tr>
+	<tr>
+		<td><label for="passTxt">Contraseña:</label></td>
+		<td><input type="password" name="pass" required></td>
+	</tr>
+	<tr>
+		<td><label for="rolTxt">Rol:</label></td>
+		<td>
+			<select id="rolTxt" name="rol">
+				<option value="Aspirante">Aspirante</option>
+			</select>
+		</td>
+	</tr>
+</table>
+<button>Registrar</button>
 </form>
 {{>footer}}

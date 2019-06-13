@@ -98,39 +98,10 @@ const getRol = () => {
     return texto;    
 }
 
-const getUserr = (user) => {
-   iniciarFileRegistrados();
-   let texto = '' ;
-        listaRegistrados.filter(aux_user => aux_user.user === user).forEach(aux => {
-        texto =  texto + aux.user
-    });
-
-    texto = texto +' </tbody> </table> ';
-
-    return texto;
-};
-
-/*
-const getUserr = () => {
-   iniciarFileRegistrados();
-   let texto;
-        listaRegistrados
-        .forEach(aux => {
-        texto =  texto + 
-        "user:" + aux.user +
-        "pass:" +aux.pass });
-
-    texto = texto +' </tbody> </table> ';
-
-    return texto;
-};
-*/
-
 
 module.exports = {
 	crear,
 	getUser,
 	getPass,
-	getRol,
-	getUserr
+	getRol
 }
