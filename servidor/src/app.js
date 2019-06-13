@@ -136,13 +136,19 @@ app.get('/login',(req,res) => {
     let auxRol = funciones.getRol();
     if(req.query.user === auxUser && req.query.pass === auxPass && auxRol === "Aspirante"){
         res.redirect('inscribir');
+    }else if(req.query.user === auxUser && req.query.pass === auxPass && auxRol === "Coordinador"){
+        res.redirect('crearcurso');
     }
 });
 
 //pagina para realizar un registro
 app.get('/register',(req,res) =>{
-    funciones.crear(req.query.user, req.query.pass, req.query.rol);
+    funciones.crear(req.query.id, req.query.name, req.query.email, req.query.tel, req.query.user, req.query.pass, req.query.rol);
     res.render('register',{
+        id: req.body.id,
+        name: req.body.name,
+        email: req.body.email,
+        tel: req.body.tel,
         user: req.body.user,
         pass: req.body.pass
     })
