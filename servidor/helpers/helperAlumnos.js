@@ -97,11 +97,11 @@ const guardarInscripcionCurso = (estudiante,curso) => {
     }
 
     //validar que no hay una cedula ingresada no esta vinculada a el curso seleccionado
-    let arrSalon = [salon];
+    let arrSalon = salon;
     let incDuplicada =   arrSalon.find(ced => estudiante.identidad === ced)   
 
     if (!incDuplicada) {
-        
+       
         if (ins.length > 0) {
             //agregando cedula nueva a la lista de estudiantes
             salon.push(estudiante.identidad);
@@ -111,7 +111,7 @@ const guardarInscripcionCurso = (estudiante,curso) => {
             listaInscripciones.push(newIns);
         }
 
-        guardarArchivoInscripciones();
+    guardarArchivoInscripciones();
         
     }else{
         console.log('Ya existe un estudiante con ese numero de identificacion registrado en el curso solicitado');

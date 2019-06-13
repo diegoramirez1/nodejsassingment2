@@ -105,6 +105,11 @@ app.get('/inscribir',(req,res) => {
     res.render('inscribir')
 });
 
+//secion principal de un estudiante activo
+app.get('/micuenta',(req,res) => {
+    res.render('micuenta')
+});
+
 app.post('/inscribiendoCurso',(req,res) => {
 
     res.render('inscribiendoCurso',{
